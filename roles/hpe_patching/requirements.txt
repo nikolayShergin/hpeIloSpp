@@ -1,0 +1,5 @@
+python-ilorest-library
+python-hpilo
+pyvmomi
+jmespath
+jq

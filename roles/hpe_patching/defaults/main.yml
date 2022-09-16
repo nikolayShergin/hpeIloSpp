@@ -4,7 +4,6 @@ deployIloMedia: cdrom
 deployIloState: boot_once
 deployIloForce: yes
 delegateToLocalHost: localhost
-delegateToJumpHost: jumphost
 destinationOfHpeIloConfBackup: /tmp/ilocaonfbackups/
 iloValidateCerts: no
 iloForceBasicAuth: yes
@@ -12,5 +11,5 @@ iloBodyFormat: json
 pathForVirtualMedia2: Managers/1/virtualmedia/2/
 pathForVersion: Systems/1/
 pathForBackupOfIloConf: Managers/1/BackupRestoreService
-pathToImage: https://8.8.8.8:3000/S3CAP/
+pathToImage: https://8.8.8.8:3000/SPP_Collection/
 pauseTime: 45
