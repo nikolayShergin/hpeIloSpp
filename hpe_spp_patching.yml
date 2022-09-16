@@ -1,7 +1,7 @@
-- name: Test Connectivity
+- name: HPE server patching with SPP ISO image
   gather_facts: no
   hosts: all
   tasks:
     - include_role:
         name: hpe_patching
-k        tasks_from: mainHpePatching.yml
+        tasks_from: mainHpePatching.yml
