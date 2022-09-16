@@ -56,3 +56,6 @@ The role applis Firmware Updates on HPE server using SPP ISO image mounted via i
 | pathForBackupOfIloConf | defaults | Managers/1/BackupRestoreService |  path to redfish API for backup file |
 | pathToImage | defaults | https://8.8.8.8:3000/SPP_Collection/ | URL for SPP ISO image | 
 | pauseTime | defaults | 45 | Time to wait before compating the versions |
+| iloUser | vault | {encrypted} | username to connect to iLO|
+| iloPassword | vault | {encrypted} | password for iloUser |
+| imageName | extra variable | HPE_SPP_092020.iso | name of the ISO file 
