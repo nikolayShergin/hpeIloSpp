@@ -1,0 +1,30 @@
+---
+
+- name: Check required variable imageName
+  fail:
+    msg: "imageName is required"
+  when: (imageName is undefined) or (imageName is none)
+
+- name: Check required variable iloUser
+  fail:
+    msg: "iloUser is required"
+  when: (iloUser is undefined) or (iloUser is none)
+
+- name: Check required variable iloPassword
+  fail:
+    msg: "iloPassword is required"
+  when: (iloPassword is undefined) or (iloPassword is none)
+
+- name: Make a backup of HPE iLO
+  import_tasks: backupHpeIlo.yml
+
+- name: Get information about current iLO version
+  import_tasks:  getInfoOfVersion.yml
+
+- name: Insert ISO SPP Image
+  import_tasks: insertVirtualMedia.yml
+
+- name: Check the installation status
+  import_tasks: compareVersions.yml
+
+

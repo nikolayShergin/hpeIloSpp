@@ -1,0 +1,7 @@
+- name: Test Connectivity
+  gather_facts: no
+  hosts: all
+  tasks:
+    - include_role:
+        name: hpe_patching
+k        tasks_from: mainHpePatching.yml

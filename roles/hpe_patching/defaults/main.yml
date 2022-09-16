@@ -1,0 +1,16 @@
+iloValidateCerts: no
+iloForceBasicAuth: yes
+pathToImage: https://8.8.8.8:3000/S3CAP/
+deployIloMedia: cdrom
+deployIloState: boot_once
+deployIloForce: yes
+iloBodyFormat: json
+apiMethodGet: GET
+delegateToLocalHost: localhost
+delegateToJumpHost: jumphost
+destinationOfHpeIloConfBackup: /tmp/ilocaonfbackups/
+basicPathToApi: /redfish/v1/
+pathForVirtualMedia2: Managers/1/virtualmedia/2/
+pathForVersion: Systems/1/
+pathForBackupOfIloConf: Managers/1/BackupRestoreService
+pauseTime: 45

@@ -1,0 +1,31 @@
+- name:  Getting information about ilo configuration
+  uri:
+    url: https://{{ ansible_host }}{{  basicPathToApi  }}{{  pathForBackupOfIloConf  }}
+    validate_certs: "{{  iloValidateCerts  }}"
+    method: "{{  apiMethodGet  }}"
+    force_basic_auth: "{{  iloForceBasicAuth  }}"
+    user: "{{  iloUser  }}"
+    password: "{{  iloPassword  }}"
+    body_format: "{{ iloBodyFormat  }}"
+  delegate_to: "{{ delegateToLocalhost  }}"
+  register: infoAboutBackup
+
+  - name: debug infoAboutBackup
+    debug: 
+      var: infoAboutBackup
+  
+  - name: debugBackupFileLocation
+    debug: msg="{{ infoAboutBackup | json_query(query)  }}"
+    vars:
+      query: "json.BackupFileLocation"
+    register: parsedBackupsPaths
+
+  - name: saving ilo configuration backup on jumphost
+    get_url:
+      url: https://{{ ansible_host }}{{ infoAboutBackup.json.BackupFileLocation }}
+      dest: "{{ destinationOfHpeIloConfBackup }}"
+      validate_certs: "{{ iloValidateCerts }}"
+      force_basic_auth: "{{ iloForceBasicAuth }}"
+      url_username: "{{ iloUser }}"
+      url_password: "{{ iloPassword }}"
+    delegate_to: "{{ delegateToJumphost }}"
