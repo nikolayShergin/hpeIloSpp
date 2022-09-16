@@ -1,0 +1,21 @@
+- name: Booting HPE server from SPP ISO
+  hpilo_boot:
+    host: "{{ ansible_host }}"
+    login: "{{ iloUser }}"
+    password: "{{ iloPassword }}"
+    media: "{{ deployIloMedia }}"
+    image: "{{ pathToImage }}{{ imageName }}"
+    state: "{{ deployIloState }}"
+    force: "{{ deployIloForce }}"
+  delegate_to: "{{ delegateToLocalHost }}"
+
+- name: Getting information about virtualvmedia2
+  uri:
+    url: https://{{ ansible_host }}{{ basicPathToApi }}{{ pathForVirtualMedia2 }}
+    validate_certs: "{{ iloValidateCerts }}"
+    method: "{{ apiMethodGet }}"
+    force_basic_auth: "{{ iloForceBasicAuth }}"
+    user: "{{ iloUser }}"
+    password: "{{ iloPassword }}"
+    body_format: "{{ iloBodyFormat }}"
+  delegate_to: "{{ delegateToLocalhost }}"

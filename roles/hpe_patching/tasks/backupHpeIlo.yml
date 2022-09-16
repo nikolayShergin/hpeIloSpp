@@ -1,13 +1,13 @@
 - name:  Getting information about ilo configuration
   uri:
-    url: https://{{ ansible_host }}{{  basicPathToApi  }}{{  pathForBackupOfIloConf  }}
-    validate_certs: "{{  iloValidateCerts  }}"
-    method: "{{  apiMethodGet  }}"
-    force_basic_auth: "{{  iloForceBasicAuth  }}"
-    user: "{{  iloUser  }}"
-    password: "{{  iloPassword  }}"
-    body_format: "{{ iloBodyFormat  }}"
-  delegate_to: "{{ delegateToLocalhost  }}"
+    url: https://{{ ansible_host }}{{ basicPathToApi }}{{ pathForBackupOfIloConf }}
+    validate_certs: "{{ iloValidateCerts }}"
+    method: "{{ apiMethodGet }}"
+    force_basic_auth: "{{ iloForceBasicAuth }}"
+    user: "{{ iloUser }}"
+    password: "{{ iloPassword }}"
+    body_format: "{{ iloBodyFormat }}"
+  delegate_to: "{{ delegateToLocalhost }}"
   register: infoAboutBackup
 
   - name: debug infoAboutBackup
@@ -15,7 +15,7 @@
       var: infoAboutBackup
   
   - name: debugBackupFileLocation
-    debug: msg="{{ infoAboutBackup | json_query(query)  }}"
+    debug: msg="{{ infoAboutBackup | json_query(query) }}"
     vars:
       query: "json.BackupFileLocation"
     register: parsedBackupsPaths

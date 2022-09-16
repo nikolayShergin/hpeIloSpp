@@ -1,8 +1,4 @@
-- name: Waiting for the installation to complete
-  pause:
-    minutes: "{{ pauseTime }}"
-
-- name: Checking if BIOS version
+- name: Getting information about current BIOS version
   uri:
     url: https://{{ ansible_host }}{{ basicPathToApi }}{{ pathForVersion }}
     validate_certs: "{{ iloValidateCerts }}"
@@ -12,11 +8,9 @@
     password: "{{ iloPassword }}"
     body_format: "{{ iloBodyFormat }}"
   delegate_to: "{{ delegateToLocalhost }}"
-  register: versionBiosAfter
+  register: versionBios
 
-- name: Check if BIOS version is newer than it was
-  assert:
-    that: 
-      - versionIloBeforeUpdate != versionBiosAfter.json.BiosVersion
-    fail_msg: "Didn't patch"
-    success_msg: "Patched"
+- name: debug versionBios
+    debug: 
+      var: versionBios.json.BiosVersion
+    register: versionIloBeforeUpdate
